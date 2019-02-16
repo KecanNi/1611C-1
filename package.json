@@ -1,0 +1,25 @@
+{
+  "name": "1611C-1",
+  "version": "1.0.0",
+  "description": "网易云",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "bulid": "gulp bulid"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KecanNi/1611C-1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KecanNi/1611C-1/issues"
+  },
+  "homepage": "https://github.com/KecanNi/1611C-1#readme",
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-htmlmin": "^5.0.1"
+  }
+}
