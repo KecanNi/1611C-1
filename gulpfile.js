@@ -2,7 +2,7 @@
  * @Author: KecanNi 
  * @Date: 2019-02-16 09:57:44 
  * @Last Modified by: KecanNi
- * @Last Modified time: 2019-02-16 10:26:57
+ * @Last Modified time: 2019-02-16 10:46:23
  */
 
 var gulp = require('gulp'),
@@ -28,23 +28,15 @@ gulp.task('devSass', function() {
         .pipe(gulp.dest('./src/css/'))
 })
 
-//编译js
-gulp.task('devJs', function() {
-    return gulp.src('./src/libs/**/*.js')
-        .pipe(concat('all.js'))
-        .pipe(gulp.dest('./src/js/'))
-})
-
 //监听
 gulp.task('watch', function() {
-    return gulp.watch(['./src/scss/**/*.scss', './src/js/**/*.js'], gulp.series('devSass', 'devJs'))
+    return gulp.watch('./src/scss/**/*.scss', gulp.series('devSass'))
 })
 
 //启服务
 gulp.task('browserSync', function() {
     return gulp.src('src')
         .pipe(server({
-            // livereload: true,
             directoryListing: true,
             open: true,
             middleware: function(req, res, next) {
@@ -74,6 +66,7 @@ gulp.task('default', gulp.parallel('devSass', 'devJs', 'browserSync', 'watch'))
 //压缩html
 gulp.task('bHtml', function() {
     return gulp.src('./src/**/*.html')
+        .pipe(htmlmin())
         .pipe(gulp.dest('./dist'))
 })
 
@@ -87,6 +80,9 @@ gulp.task('bSass', function() {
 //压缩js
 gulp.task('bJs', function() {
     return gulp.src('./src/js/**/*.js')
+        .pipe(babel({
+            presets: ['@babel/env']
+        }))
         .pipe(uglify()) //压缩js
         .pipe(gulp.dest('./dist/js/'))
 })
