@@ -1,0 +1,1 @@
+"use strict";function color(e,o){e.style.color=o}color(document.getElementsByTagName("span")[0],"red");
